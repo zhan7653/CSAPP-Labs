@@ -1,0 +1,48 @@
+0000000000401a03 <addval_190>:
+  401a03:	8d 87 41 48 89 e0    	1 // 401a06: mov %rsp, %rax -> ret
+  401a09:	c3                   	retq   
+
+00000000004019a0 <addval_273>:
+  4019a0:	8d 87 48 89 c7 c3    	2 // 4019a2: mov %rax, %rdi -> ret
+  4019a6:	c3                   	retq   
+
+00000000004019a7 <addval_219>:
+  4019a7:	8d 87 51 73 58 90    	3 // 4019ab: pop %rax -> nop -> ret
+  4019ad:	c3                   	retq   
+
+00000000004019db <getval_481>:
+  4019db:	b8 5c 89 c2 90       	4 // 4019dc: pop %rsp -> movl %eax, %edx -> nop -> ret
+  4019e0:	c3                   	retq   
+
+0000000000401a11 <addval_436>:
+  401a11:	8d 87 89 ce 90 90    	5 // 401a13: movl %ecx, %esi -> nop*2 ->ret
+  401a17:	c3                   	retq   
+
+0000000000401a33 <getval_159>:
+  401a33:	b8 89 d1 38 c9       	6 // 401a34: movl %edx, %ecx -> nop -> ret
+  401a38:	c3                   	retq   
+
+0000000000401a39 <addval_110>:
+  401a39:	8d 87 c8 89 e0 c3    	7 // 401a3c: movl %esp, %eax -> ret
+  401a3f:	c3                   	retq   
+
+0000000000401a40 <addval_487>:
+  401a40:	8d 87 89 c2 84 c0    	8 // 401a42: movl %eax, %edx -> nop -> ret
+  401a46:	c3                   	retq    
+
+00000000004019d6 <add_xy>:
+  4019d6:	48 8d 04 37          	9 // 4019d6: lea (%rdi,%rsi,1),%rax -> ret
+  4019da:	c3                   	retq  
+
+
+0000000000401ab2 <end_farm>:
+  401ab2:	b8 01 00 00 00       	mov    $0x1,%eax
+  401ab7:	c3                   	retq   
+  401ab8:	90                   	nop
+  401ab9:	90                   	nop
+  401aba:	90                   	nop
+  401abb:	90                   	nop
+  401abc:	90                   	nop
+  401abd:	90                   	nop
+  401abe:	90                   	nop
+  401abf:	90                   	nop
