@@ -1,6 +1,6 @@
 /* 
 Another solution for phase5, use %rdi = 0x30(not always, but most of times), 
-I know is a wrong answer, but a lot of times it correctly call touch3 with true string address like:
+I know it is a wrong answer, but a lot of times it correctly call touch3 with true string address like:
 Breakpoint 10, touch3 (sval=0x7ffffffd6d80 "59b997fa") at visible.c:71
 But after that it always cause a segmentation fault and I don't know why.
 The code seems good if %rdi = 0x30. 
