@@ -1,0 +1,20 @@
+Fetch: 
+    icode:ifun <- M1[PC]
+    rA:rB <- M1[PC + 1]
+    ValC <- M8[PC + 2]
+    ValP <- PC + 10
+
+Decode:
+    ValB <- R[rB]
+
+Execute:
+    ValE <- ValC + ValB
+    Set CC
+
+Memory:
+
+Write back:
+    R[rB] <- ValE
+
+PC update:
+    PC <- ValP
