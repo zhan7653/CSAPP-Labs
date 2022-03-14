@@ -16,7 +16,7 @@
                             | ##################################################################
                             | # You can modify this portion
                             | # Version3: 10x10 unloop and the rest 2x2 unloop
-                            | # Average CPE: 7.70 (Score: 56.0/60.0)
+                            | # Average CPE: 7.69 (Score: 56.2/60.0)
                             | 
                             | 	# Loop header
                             | 	# xorq %rax, %rax	# %rax already equals 0 in this environment
@@ -32,8 +32,8 @@
 0x045: 50d72800000000000000 | 	mrmovq 40(%rdi), %r13	# read val5 from src[i+5]
 0x04f: 50e73000000000000000 | 	mrmovq 48(%rdi), %r14	# read val6 from src[i+6]
 0x059: 50173800000000000000 | 	mrmovq 56(%rdi), %rcx	# read val7 from src[i+7]
-0x063: 50374000000000000000 | 	mrmovq 64(%rdi), %rbx	# read val7 from src[i+7]
-0x06d: 50574800000000000000 | 	mrmovq 72(%rdi), %rbp	# read val7 from src[i+7]
+0x063: 50374000000000000000 | 	mrmovq 64(%rdi), %rbx	# read val8 from src[i+8]
+0x06d: 50574800000000000000 | 	mrmovq 72(%rdi), %rbp	# read val9 from src[i+9]
 0x077: 40860000000000000000 | 	rmmovq %r8, (%rsi) 		# store val to dst[i]
 0x081: 40960800000000000000 | 	rmmovq %r9, 8(%rsi)		# store val1 to dst[i+1]
 0x08b: 40a61000000000000000 | 	rmmovq %r10, 16(%rsi)	# store val2 to dst[i+2]
@@ -42,8 +42,8 @@
 0x0a9: 40d62800000000000000 | 	rmmovq %r13, 40(%rsi)	# store val5 to dst[i+5]
 0x0b3: 40e63000000000000000 | 	rmmovq %r14, 48(%rsi)	# store val6 to dst[i+6]
 0x0bd: 40163800000000000000 | 	rmmovq %rcx, 56(%rsi)	# store val7 to dst[i+7]
-0x0c7: 40364000000000000000 | 	rmmovq %rbx, 64(%rsi)	# store val7 to dst[i+7]
-0x0d1: 40564800000000000000 | 	rmmovq %rbp, 72(%rsi)	# store val7 to dst[i+7]
+0x0c7: 40364000000000000000 | 	rmmovq %rbx, 64(%rsi)	# store val8 to dst[i+8]
+0x0d1: 40564800000000000000 | 	rmmovq %rbp, 72(%rsi)	# store val9 to dst[i+9]
                             | 	
 0x0db: 6288                 | 	andq %r8, %r8		# val <= 0?
 0x0dd: 71f000000000000000   | 	jle Npos1
@@ -77,17 +77,17 @@
 0x170: 718301000000000000   | 	jle Npos8
 0x179: c0f00100000000000000 | 	iaddq $1, %rax		# count++
 0x183:                      | Npos8:
-0x183: 6233                 | 	andq %rbx, %rbx		# val7 <= 0?
+0x183: 6233                 | 	andq %rbx, %rbx		# val8 <= 0?
 0x185: 719801000000000000   | 	jle Npos9
 0x18e: c0f00100000000000000 | 	iaddq $1, %rax		# count++
 0x198:                      | Npos9:
-0x198: 6255                 | 	andq %rbp, %rbp		# val7 <= 0?
+0x198: 6255                 | 	andq %rbp, %rbp		# val9 <= 0?
 0x19a: 71ad01000000000000   | 	jle Npos10
 0x1a3: c0f00100000000000000 | 	iaddq $1, %rax		# count++
 0x1ad:                      | Npos10:
-0x1ad: c0f75000000000000000 | 	iaddq $80, %rdi		# src += 8
-0x1b7: c0f65000000000000000 | 	iaddq $80, %rsi		# dst += 8
-0x1c1: c0f2f6ffffffffffffff | 	iaddq $-10, %rdx		# len -= 8, len > 0?
+0x1ad: c0f75000000000000000 | 	iaddq $80, %rdi		# src += 10
+0x1b7: c0f65000000000000000 | 	iaddq $80, %rsi		# dst += 10
+0x1c1: c0f2f6ffffffffffffff | 	iaddq $-10, %rdx	# len -= 10, len > 0?
 0x1cb: 761300000000000000   | 	jg Loop			    # if so, goto Loop:
 0x1d4:                      | Check:
 0x1d4: c0f20800000000000000 | 	iaddq $8, %rdx 		# +9 -1
@@ -109,7 +109,7 @@
 0x242:                      | Npos_o2:	
 0x242: c0f71000000000000000 | 	iaddq $16, %rdi		# src += 2
 0x24c: c0f61000000000000000 | 	iaddq $16, %rsi		# dst += 2
-0x256: c0f2feffffffffffffff | 	iaddq $-2, %rdx		# len - 2, len > 0?
+0x256: c0f2feffffffffffffff | 	iaddq $-2, %rdx		# len -= 2, len > 0?
 0x260: 76f001000000000000   | 	jg Loop_o			    # if so, goto Loop_o:
 0x269:                      | Check_o:
 0x269: 50a70000000000000000 | 	mrmovq (%rdi), %r10	    # read val from src... 
