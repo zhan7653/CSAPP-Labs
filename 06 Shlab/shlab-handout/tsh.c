@@ -193,11 +193,11 @@ void eval(char *cmdline)
         Sigemptyset(&mask_one);         
         Sigaddset(&mask_one, SIGCHLD);  // Create a mask that only block SIGCHLD
 
-        Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);   // Block SIGCHLD to aviod the race between addjob and deletejob
+        Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);   // Block SIGCHLD to avoid the race between addjob and deletejob
         if ((pid = Fork()) == 0) {
             /* Child process */
             Sigprocmask(SIG_SETMASK, &prev_one, NULL);  // Unblock SIGCHLD
-            Setpgid(0, 0);         // Set the pgid equal to child's pid to aviod using the same pid with the shell.
+            Setpgid(0, 0);         // Set the pgid equal to child's pid to avoid using the same pid with the shell.
             if (execve(argv[0], argv, environ) < 0) { // Child runs user job
                 printf("%s: Command not found.\n", argv[0]);
                 exit(0);
