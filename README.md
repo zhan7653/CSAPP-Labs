@@ -46,14 +46,6 @@ This repository contains my solutions to the labs for the "Computer Systems: A P
 - **Key File**: `mm.c`
 - **[More Details](./07%20Malloclab/README.md)**
 
-## Getting Started
-
-To work with the labs, clone this repository and navigate into each lab's directory. Each lab has its own README with specific setup instructions and objectives.
-
-```bash
-git clone https://github.com/yourusername/csapp-lab-solutions.git
-cd csapp-lab-solutions/<lab-directory>
-```
 
 ## Tools and Environment
 The labs were developed and tested on a Unix-like environment, using tools such as `gcc`, `gdb`, and Unix shell commands.
